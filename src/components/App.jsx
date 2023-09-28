@@ -1,5 +1,5 @@
 import '../css/App.css'
-import RobotConnection from "./robotConnection.jsx";
+import RobotConnection from "./RobotConnection.jsx";
 function App() {
   return (
     <>
