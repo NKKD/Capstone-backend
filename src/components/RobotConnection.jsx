@@ -69,6 +69,31 @@ function RobotConnection() {
         connect();
     }
 
+
+
+    function readImuTopic() {
+
+        console.log("start reading imu data")
+
+        const imuTopic = new ROSLIB.Topic({
+            ros: ros,
+            name: '/imu/data',
+            messageType: 'sensor_msgs/Imu', // adjust the message type
+        });
+
+        console.log("topic defined")
+
+        imuTopic.subscribe(function (message) {
+            console.log("cmd vel here")
+            console.log('Received message on ' + imuTopic.name + ': ', message); // logging the entire message object
+            imuTopic.unsubscribe();
+        });
+
+        connect();
+    }
+
+
+
     function publishToRGBLight() {
 
         const rgbLightTopic = new ROSLIB.Topic({
@@ -157,6 +182,7 @@ function RobotConnection() {
             <button onClick={() => connect()}>Connect</button>
             <button onClick={() => readVoltageTopic()}>Voltage</button>
             <button onClick={() => readCmdVelTopic()}>Cmd Vel</button>
+            <button onClick={() => readImuTopic()}>IMU</button>
             <button onClick={() => publishToRGBLight()}>RGB Light</button>
             <button onClick={() => publishMoveToCmdVel()}>Move</button>
         </div>
