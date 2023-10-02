@@ -1,0 +1,163 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Jiaxu Capstone Project CRUD",
+        "description": "Robot Web Control Project Application API",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "Robot Web Control",
+            "description": "API for Robot Web Control Project"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/api/robot": {
+            "get": {
+                "tags": [
+                    "Basic connection"
+                ],
+                "summary": "Connect to the robot",
+                "parameters": [
+                    {
+                        "name": "robotIP",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Connect to Robot by a specific IP address",
+                        "default": "192.168.0.167"
+                    },
+                    {
+                        "name": "robotPortNumber",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Connect to Robot by a specific port number (by default 9090)",
+                        "default": "9090"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "This service allows you to returned a list of game"
+                    }
+                }
+            }
+        },
+
+        "/api/robot/imu": {
+            "get": {
+                "tags": [
+                    "IMU"
+                ],
+                "summary": "robot IMU reading",
+                "responses": {
+                    "200": {
+                        "description": "This service allows you to retrieve a specific game by its ID"
+                    }
+                }
+            }
+        },
+
+        "/api/robot/voltage": {
+            "get": {
+                "tags": [
+                    "Battery voltage"
+                ],
+                "summary": "robot battery voltage reading",
+                "responses": {
+                    "200": {
+                        "description": "This service allows you to retrieve a specific game by its ID"
+                    }
+                }
+            }
+        },
+
+
+        "/api/robot/rgb/{id}": {
+            "post": {
+                "tags": [
+                    "RGB control"
+                ],
+                "summary": "Change RGB light effect",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "type": "integer",
+                        "description": "RGB effect range from 1 to 6",
+                        "default": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "This service allows you to add a new game to the games list"
+                    }
+                }
+            }
+        },
+
+        "/api/robot/movement": {
+            "post": {
+                "tags": [
+                    "Movement control"
+                ],
+                "summary": "Move robot",
+                "parameters": [
+                    {
+                        "name": "linearX",
+                        "in": "query",
+                        "type": "number",
+                        "description": "Robot linear movement at X axis",
+                        "default": 0.0
+                    },
+                    {
+                        "name": "linearY",
+                        "in": "query",
+                        "type": "number",
+                        "description": "Robot linear movement at Y axis",
+                        "default": 0.0
+                    },
+                    {
+                        "name": "angularZ",
+                        "in": "query",
+                        "type": "number",
+                        "description": "Robot angular movement at X axis",
+                        "default": 0.0
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "This service allows you to add a new game to the games list"
+                    }
+                }
+            }
+        },
+
+        "/api/robot/estop": {
+            "post": {
+                "tags": [
+                    "Emergency stop"
+                ],
+                "summary": "Stop robot",
+                "responses": {
+                    "200": {
+                        "description": "This service allows you to add a new game to the games list"
+                    }
+                }
+            }
+        }
+    }
+}
