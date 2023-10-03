@@ -1,8 +1,8 @@
 import ROSLIB from 'roslib'
 export class RobotService{
 
-    #robotIP;
-    #robotPortNumber;
+    // #robotIP;
+    // #robotPortNumber;
     #ros;
 
     getRobotConnection(robotIp, robotPortNumber) {
@@ -29,8 +29,6 @@ export class RobotService{
         const robotAddress = "ws://" + robotIp + ":" + robotPortNumber;
         this.#ros.connect(robotAddress);
 
-        this.#robotIP = robotIp;
-        this.#robotPortNumber = robotPortNumber;
     }
 
 

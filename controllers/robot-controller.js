@@ -8,8 +8,11 @@ export class RobotController{
             let robotIP= req.query.robotIP;
             let robotPortNumber = req.query.robotPortNumber;
             let robotConnection = await robotService.getRobotConnection(robotIP,robotPortNumber);
+            let robotConnectionStatus = {
+                connection: "connected to robot successfully"
+            }
             res.status(200)
-            res.json(robotConnection)
+            res.json(robotConnectionStatus)
         }
         catch (err) {
             res.status(500);
