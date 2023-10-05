@@ -3,22 +3,19 @@ const robotService = new RobotService();
 
 export class RobotController{
 
-    async getRobotConnection(req, res){
+    async getRobotConnection(req, res) {
         try {
-            let robotIP= req.query.robotIP;
+            let robotIP = req.query.robotIP;
             let robotPortNumber = req.query.robotPortNumber;
-            let robotConnection = await robotService.getRobotConnection(robotIP,robotPortNumber);
-            let robotConnectionStatus = {
-                connection: "connected to robot successfully"
-            }
-            res.status(200)
-            res.json(robotConnectionStatus)
+            let robotConnection = await robotService.getRobotConnection(robotIP, robotPortNumber);
+            res.status(200).json(robotConnection);
+            console.log(robotConnection);
         }
         catch (err) {
-            res.status(500);
-            res.json({ error: err.message })
+            res.status(500).json({ error: err.message });
         }
     }
+
 
     async getRobotIMUReading(req, res){
         try {

@@ -6,30 +6,34 @@ export class RobotService{
     #ros;
 
     getRobotConnection(robotIp, robotPortNumber) {
-        if (!robotIp || !robotPortNumber) {
-            throw new Error('IP and Port Number must be provided!');
-        }
+        return new Promise((resolve, reject) => {
+            if (!robotIp || !robotPortNumber) {
+                reject(new Error('IP and Port Number must be provided!'));
+            }
 
-        this.#ros = new ROSLIB.Ros({ encoding: 'ascii' });
+            this.#ros = new ROSLIB.Ros({ encoding: 'ascii' });
 
-        this.#ros.on('error', function (error) {
-            console.error('Error connecting to robot:', error);
-            // Consider handling the error more effectively, for example, by setting up a callback or event emitter.
+            this.#ros.on('error', function (error) {
+                console.error('Error connecting to robot:');
+                reject(error);
+            });
+
+            this.#ros.on('connection', function () {
+                console.log('Connected!');
+                resolve("connected to robot successfully");
+            });
+
+            this.#ros.on('close', function () {
+                const closeError = new Error('Connection to robot closed.');
+                console.error(closeError.message);
+                reject(closeError);
+            });
+
+            const robotAddress = "ws://" + robotIp + ":" + robotPortNumber;
+            this.#ros.connect(robotAddress);
         });
-
-        this.#ros.on('connection', function () {
-            console.log('Connected!');
-        });
-
-        this.#ros.on('close', function () {
-            console.log('Connection closed');
-            // Handle connection closed more effectively here, perhaps by reconnecting or informing the user.
-        });
-
-        const robotAddress = "ws://" + robotIp + ":" + robotPortNumber;
-        this.#ros.connect(robotAddress);
-
     }
+
 
 
 
