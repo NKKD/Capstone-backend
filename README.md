@@ -2,7 +2,7 @@ Robot Web Control Project Application: Backend API
 
 Overview
 
-The Robot Web Control Project Application provides a comprehensive backend API that serves as the backbone for controlling a robot. With its set of defined endpoints, users can execute a myriad of actions, ranging from directly controlling the robot's movements, fetching real-time data from its sensors, to configuring and managing its advanced functionalities. Whether you are an enthusiast aiming to tinker with robotics or a professional developer seeking to integrate and deploy robotic controls, this API is tailored for you.
+The Robot Web Control Project Application provides a comprehensive backend API that serves as the backbone for controlling a robot. With its set of defined endpoints, users can execute a myriad of actions, ranging from directly controlling the robot's movements, fetching real-time data from its sensors, to configuring and managing its advanced functionalities.
 
 Installation
 
