@@ -46,7 +46,7 @@ export class RobotService{
 
             const imuTopic = new ROSLIB.Topic({
                 ros: this.#ros,
-                name: '/imu/data',
+                name: '/imu/imu_data',
                 messageType: 'sensor_msgs/Imu',
             });
 
